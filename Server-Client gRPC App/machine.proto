@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package machine;
+
+service MachineService {
+    rpc GetMachineById(MachineIdRequest) returns (Machine);
+    rpc GetMachineByName(MachineNameRequest) returns (MachineList);
+    rpc GetMachineByCfg(MachineCfgRequest) returns (MachineList);
+    rpc GetMachineByAdr(MachineAdrRequest) returns (MachineList);
+    rpc GetAllMachines(Empty) returns (MachineList);
+    rpc UpdateMachine(Machine) returns (UpdateMachineResponse);
+}
+
+message Machine {
+    string id = 1;
+    string name = 2;
+    string cfg = 3;
+}
+
+message MachineIdRequest {
+    string id = 1;
+}
+
+message MachineNameRequest {
+    string name = 1;
+}
+
+message MachineCfgRequest {
+    string cfg = 1;
+}
+
+message MachineAdrRequest {
+    string adr = 1;
+}
+
+message UpdateMachineResponse {
+    string message = 1;
+}
+
+message Empty {}
+
+message MachineList {
+    repeated Machine machines = 1;
+}
+
